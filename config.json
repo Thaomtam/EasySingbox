@@ -1,0 +1,129 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true
+  },
+  
+  "experimental": {
+    "clash_api": {
+      "external_controller": "0.0.0.0:9095",
+      "external_ui": "/etc/sing-box/ui",
+      "secret": "",
+      "external_ui_download_url": "https://ghp.ci/https://github.com/MetaCubeX/metacubexd/archive/refs/heads/gh-pages.zip",
+      "external_ui_download_detour": "🎯 Kết nối trực tiếp toàn cầu",
+      "default_mode": "rule"
+    },
+  "cache_file": {
+    "enabled": true,
+    "path": "/etc/sing-box/cache.db",
+    "store_fakeip": false
+    }
+  },
+  
+  "dns": {
+    "servers": [
+      {"tag": "proxyDns", "address": "https://dns.google/dns-query", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🚀 lựa chọn nút"},
+      {"tag": "localDns", "address": "223.5.5.5", "address_resolver": "defaultDns", "address_strategy": "ipv4_only", "detour": "🎯 Kết nối trực tiếp toàn cầu"},
+      {"tag": "defaultDns", "address": "223.5.5.5", "address_strategy": "ipv4_only", "detour": "🎯 Kết nối trực tiếp toàn cầu"}
+    ],
+    "rules": [
+      { "outbound": "any", "server": "defaultDns", "disable_cache": true },
+      { "clash_mode": "direct", "server": "localDns" },
+      { "clash_mode": "global", "server": "proxyDns" },
+      { "rule_set": "geosite-cn", "server": "localDns" },
+      { "rule_set": "geosite-geolocation-!cn", "server": "proxyDns" }
+    ],
+    "final": "localDns",
+    "strategy": "ipv4_only"
+  },
+
+  "inbounds": [
+    {
+      "type": "tproxy",
+      "tag": "tproxy-in",
+      "listen": "0.0.0.0",
+      "listen_port": 7895,
+      "sniff": true,
+      "sniff_override_destination": false
+    },
+    {
+      "type": "mixed",
+      "listen": "127.0.0.1",
+      "listen_port": 2080,
+      "sniff": true,
+      "users": []
+    }
+  ],
+
+   "outbounds": [
+    { "tag": "🚀 lựa chọn nút", "type": "selector", "outbounds": ["🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🐸 Chuyển đổi thủ công", "♻️ Lựa chọn tự động", "🎯 Kết nối trực tiếp toàn cầu"] },
+    { "tag": "📹 YouTube", "type": "selector", "outbounds": ["🚀 lựa chọn nút", "♻️ Lựa chọn tự động", "🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🐸 Chuyển đổi thủ công"] },
+    { "tag": "🤖 OpenAI", "type": "selector", "outbounds": ["🚀 lựa chọn nút", "♻️ Lựa chọn tự động", "🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🐸 Chuyển đổi thủ công"] },
+    { "tag": "🍀 Google", "type": "selector", "outbounds": ["🚀 lựa chọn nút", "♻️ Lựa chọn tự động", "🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🐸 Chuyển đổi thủ công"] },
+    { "tag": "👨‍💻 Github", "type": "selector", "outbounds": ["🚀 lựa chọn nút", "♻️ Lựa chọn tự động", "🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🐸 Chuyển đổi thủ công"] },
+    { "tag": "🪟 Microsoft", "type": "selector", "outbounds": ["🚀 lựa chọn nút", "♻️ Lựa chọn tự động", "🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🎯 Kết nối trực tiếp toàn cầu"] },
+    { "tag": "🐬 OneDrive", "type": "selector", "outbounds": ["🚀 lựa chọn nút", "♻️ Lựa chọn tự động", "🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🐸 Chuyển đổi thủ công"] },
+    { "tag": "🎵 TikTok", "type": "selector", "outbounds": ["🚀 lựa chọn nút", "♻️ Lựa chọn tự động", "🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🐸 Chuyển đổi thủ công"] },
+    { "tag": "🎥 Netflix", "type": "selector", "outbounds": ["🚀 lựa chọn nút", "♻️ Lựa chọn tự động", "🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🐸 Chuyển đổi thủ công"] },
+    { "tag": "📲 Telegram", "type": "selector", "outbounds": ["🚀 lựa chọn nút", "♻️ Lựa chọn tự động", "🔯 Tự động Hồng Kông", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ", "🐸 Chuyển đổi thủ công"] },
+    { "tag": "🍏 Apple", "type": "selector", "outbounds": ["🎯 Kết nối trực tiếp toàn cầu", "🇭🇰 nút Hồng Kông", "🇯🇵 nút Nhật Bản", "🇺🇲 nút Hoa Kỳ"] },
+    { "tag": "🐠 Một con cá lọt lưới", "type": "selector", "outbounds": ["🚀 lựa chọn nút","🎯 Kết nối trực tiếp toàn cầu"] },
+    { "tag": "🐸 Chuyển đổi thủ công", "type": "selector", "outbounds": ["{all}"]},
+    { "tag": "🇭🇰 nút Hồng Kông", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"] }] },
+    { "tag": "🇯🇵 nút Nhật Bản", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇯🇵|JP|jp|日本|日|Japan"] }] },
+    { "tag": "🇺🇲 nút Hoa Kỳ", "type": "selector", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇺🇸|US|us|美国|美|United States"] }, { "action": "exclude", "keywords": ["香港|港|HK|hk|HongKong"] }] },
+    { "tag": "🔯 Tự động Hồng Kông", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "include", "keywords": ["🇭🇰|HK|hk|香港|港|HongKong"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50 },
+    { "tag": "♻️ Lựa chọn tự động", "type": "urltest", "outbounds": ["{all}"], "filter": [{ "action": "exclude", "keywords": ["网站|地址|剩余|过期|时间|有效"] }], "url": "http://www.gstatic.com/generate_204", "interval": "10m", "tolerance": 50 },
+    { "tag": "GLOBAL", "type": "selector", "outbounds": ["{all}"]},
+    { "tag": "🎯 Kết nối trực tiếp toàn cầu", "type": "direct" },
+    { "tag": "dns-out", "type": "dns" }
+  ],
+  
+  "route": {
+        "auto_detect_interface": true,
+        "final": "🐠 Một con cá lọt lưới",
+    "rules": [
+      { "type": "logical", "mode": "or", "rules": [{ "port": 53 }, { "protocol": "dns" }], "outbound": "dns-out" },
+      { "clash_mode": "direct", "outbound": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "clash_mode": "global", "outbound": "GLOBAL" },
+      { "domain": ["clash.razord.top", "yacd.metacubex.one", "yacd.haishan.me", "d.metacubex.one"], "outbound": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "rule_set": ["geosite-private", "geoip-private"], "outbound": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "rule_set": "geosite-chat", "outbound": "🤖 OpenAI" },
+      { "rule_set": "geosite-github", "outbound": "👨‍💻 Github" },
+      { "rule_set": "geosite-youtube", "outbound": "📹 YouTube" },
+      { "rule_set": "geosite-onedrive", "outbound": "🐬 OneDrive" }, 
+      { "rule_set": "geosite-microsoft", "outbound": "🪟 Microsoft" }, 
+      { "rule_set": ["geoip-google", "geosite-google"], "outbound": "🍀 Google" },
+      { "rule_set": "geosite-tiktok", "outbound": "🎵 TikTok" },
+      { "rule_set": ["geoip-apple", "geosite-apple"], "outbound": "🍏 Apple" },
+      { "rule_set": ["geoip-netflix", "geosite-netflix"], "outbound": "🎥 Netflix" },
+      { "rule_set": ["geoip-telegram", "geosite-telegram"], "outbound": "📲 Telegram" },
+      { "rule_set": "geosite-geolocation-!cn", "outbound": "🚀 lựa chọn nút" },
+      { "rule_set": ["geoip-cn", "geosite-cn"], "outbound": "🎯 Kết nối trực tiếp toàn cầu" }
+    ],
+    
+    "rule_set": [
+      { "tag": "geosite-chat", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/category-ai-chat-!cn.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-youtube", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/youtube.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-google", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/google.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-github", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/github.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-telegram", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/telegram.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-tiktok", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/tiktok.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-netflix", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/netflix.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-apple", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/apple.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-microsoft", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/microsoft.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-onedrive", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/onedrive.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-geolocation-!cn", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/geolocation-!cn.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-cn", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/cn.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geosite-private", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geosite/private.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+            
+      { "tag": "geoip-google", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/google.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geoip-telegram", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/telegram.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },     
+      { "tag": "geoip-netflix", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/netflix.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },     
+      { "tag": "geoip-apple", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo-lite/geoip/apple.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geoip-cn", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/cn.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" },
+      { "tag": "geoip-private", "type": "remote", "format": "binary", "url": "https://ghp.ci/https://raw.githubusercontent.com/MetaCubeX/meta-rules-dat/sing/geo/geoip/private.srs", "download_detour": "🎯 Kết nối trực tiếp toàn cầu" }
+    ]
+  }
+}
